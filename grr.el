@@ -13,9 +13,7 @@
 ;; grr.el is a simple wrapper over growlnotify and will not work if
 ;; growlnotify is missing.
 
-;; Currently only supports setting the notification name and the
-;; sticky flag.  Other options may be added in the future (setting the
-;; icon, etc.).
+;; Currently only supports setting the title, message, and sticky flag.
 
 ;; History
 
@@ -59,9 +57,7 @@
       (let ((process (start-process "grr" nil grr-command
                                     (grr-encode-string (grr-clean-string title))
                                     "-a" grr-app
-                                    (if (null sticky) "" "--sticky")
-                                    "-n" (or notification-name
-                                             "Emacs Notification"))))
+                                    (if (null sticky) "" "--sticky"))))
         (process-send-string process (grr-encode-string (grr-clean-string msg)))
         (process-send-string process "\n")
         (process-send-eof process)

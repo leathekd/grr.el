@@ -33,12 +33,12 @@ to ~/.emacs.d/init.el:
 
 ** Usage
 
-#+begin_example
+#+BEGIN_EXAMPLE
 (grr-notify "This is the title" ;; required
             "This is the message" ;; required
             nil ;; sticky boolean - optional
   )
-#+end_example
+#+END_EXAMPLE
 
 ** License
 Source Copyright © 2012 David Leatherman. Distributed under the GNU

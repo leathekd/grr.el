@@ -1,0 +1,45 @@
+* grr.el - Simple Growl notifications for Emacs and Mac OS X
+
+** Installation
+*** Via Marmalade (recommended)
+If you are on Emacs 23, go to marmalade-repo.org and follow the 
+installation instructions there.
+
+If you are on Emacs 24, add Marmalade as a package archive source 
+in ~/.emacs.d/init.el:
+
+#+BEGIN_EXAMPLE
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(package-initialize)
+#+END_EXAMPLE
+
+Then you can install it:
+
+#+BEGIN_EXAMPLE
+M-x package-refresh-contents
+M-x package-install RET grr RET
+#+END_EXAMPLE
+
+*** Manually (via git)
+Download the source or clone the repo and add the following 
+to ~/.emacs.d/init.el:
+
+#+BEGIN_EXAMPLE
+(add-to-list 'load-path "path/to/grr")
+(require 'grr)
+#+END_EXAMPLE
+
+** Usage
+
+#+begin_example
+(grr-notify "This is the title" ;; required
+            "This is the message" ;; required
+            nil ;; sticky boolean - optional
+  )
+#+end_example
+
+** License
+Source Copyright © 2012 David Leatherman. Distributed under the GNU
+General Public License version 3.

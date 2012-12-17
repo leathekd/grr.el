@@ -50,20 +50,23 @@
 (defun grr-encode-string (s)
   (encode-coding-string s (keyboard-coding-system)))
 
+;;;###autoload
 (defun grr-notify (title msg &optional sticky notification-name)
   "Shows a message through the growl notification system using
   `grr-command' as the program."
   (if grr-command
-      (let ((process (start-process "grr" nil grr-command
-                                    (grr-encode-string (grr-clean-string title))
-                                    "-a" grr-app
-                                    (if (null sticky) "" "--sticky"))))
+      (let ((process (start-process
+                      "grr" nil grr-command
+                      "-t" (grr-encode-string (grr-clean-string title))
+                      "-a" grr-app
+                      (if (null sticky) "" "--sticky"))))
         (process-send-string process (grr-encode-string (grr-clean-string msg)))
         (process-send-string process "\n")
         (process-send-eof process)
         t)
     (error "Could not find growlnotify.")))
 
+;;;###autoload
 (defun grr-toggle-notifications ()
   "Turn off or on visual growl notifications.  Growl will remain running."
   (interactive)
